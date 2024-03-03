@@ -44,11 +44,12 @@
                 <td><?php echo $row['title']; ?></td>
                 <td><?php echo $row['content']; ?></td>
                 <td><?php echo $row['time']; ?></td>
-                <td><a href="">編集</a></td>
-                <td><a href="">削除</a></td>
+                <td><a href="edit.php?id=<?php echo $row['id'];?>">編集</a></td>
+                <td><a href="delete.php?id=<?php echo $row['id']; ?>">削除</a></td>
             </tr>
             <?php endwhile; ?>
         </tbody>
     </table>
+    <a href="create.php">新規登録する</a>
 </body>
 </html>
