@@ -1,14 +1,29 @@
 <?php
     require('db_connect.php');
 
+    $search = $_POST['search'];
+    $search_buttom = $_POST['search_buttom'];
+    $pdo = db_connect();
+
+
     try{
-        $pdo = db_connect();
         $sql = 'select * from posts';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
     }catch(PDOException $e){
         echo $e->getMessage();
         die();      
+    }
+
+    if(!empty($search) && !empty($search_buttom)){
+        try{
+            $sql = "select * from posts where content like '%$search%'";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+        }catch(PDOException $e){
+            $e->getMessage();
+            die();
+        }
     }
 ?>
 
@@ -24,6 +39,12 @@
 </head>
 <body>
     <h1>メインページ</h1>
+
+    検索
+    <form action="" method="post">
+        <input type="text" name="search" class="input-area">
+        <input type="submit" name="search_buttom" value="検索">
+    </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <table class="table table-striped">
