@@ -33,7 +33,8 @@
         <form action="edit_done.php" method="POST">
             <input type="text" class="input-area" name="title" placeholder="title" value="<?php echo $row['title']; ?>"><br>
             <input type="text" class="input-area"  name="content" placeholder="content" value="<?php echo $row['content']; ?>"><br>
-            <input type="submit" class="input-area submit"  name="submit" value="登録">
+            <input type="submit" class="input-area submit"  name="submit" value="更新する">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
         </form>
     </div>
 </body>
